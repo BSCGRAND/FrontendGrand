@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from 'react-dom';
+import AppRouter from './routers/AppRouter';
+import getAppStore from './store/store';
+import { getGoodsRequest } from './actions/goodsRequest';
+import './styles/styles.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { Provider } from 'react-redux';
 
-export default App;
+const store = getAppStore();
+
+const template = (
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+);
+
+store.dispatch(getGoodsRequest()).then(() => {
+  ReactDOM.render(template, document.getElementById('root'));
+});
