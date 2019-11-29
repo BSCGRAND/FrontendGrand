@@ -1,0 +1,16 @@
+.filters {
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+.filters input {
+    width: 119px;
+}
+.filters label {
+    width: 119px;
+}
+.filters td {
+    text-align: center;
+}
+.container__list button {
+    margin-bottom: 10px;
+}
