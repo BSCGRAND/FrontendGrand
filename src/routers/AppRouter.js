@@ -5,7 +5,7 @@ import HomePage from '../components/HomePage';
 
 const AppRouter = () => (
     <BrowserRouter>
-        <div className='container'>
+        <div className='main__container'>
             <Switch>
                 <Route path="/home" component={HomePage} exact={true} />
             </Switch>
