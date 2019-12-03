@@ -9,7 +9,7 @@ class HomePage extends Component {
         let getString = 'find';
         const loadGoodsRequests = () => {
             let subdivision = document.querySelector('#findSubdivision').value + '&';
-            subdivision = subdivision.replace(/ /g, '%');
+            subdivision = subdivision.replace(/ /g, '%20');
             getString = getString + '?subdivision=' + subdivision;
             getString = getString + 'dateOfRequestFrom=' + document.querySelector('#findDateOfRequestFrom').value + '&';
             getString = getString + 'dateOfRequestTo=' + document.querySelector('#findDateOfRequestTo').value + '&';
@@ -21,7 +21,7 @@ class HomePage extends Component {
             getString = getString + 'sent=' + document.querySelector('#findSent').value + '&';
             getString = getString + 'progressMark=' + document.querySelector('#findProgressMark').value;
             console.log(getString);
-            axios.get('getString')
+            axios.get(getString)
                 .then(res => {
                     const goodsRequest = res.data;
                     this.setState({ goodsRequest });
