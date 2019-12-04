@@ -35,7 +35,7 @@
 .requestsTable tr:nth-child(odd) {
     background: white;
 }
-.requestsTable tr:nth-child(even) {
+.requestsTable tr:nth-child(even), .requestsTable tbody .firsRow {
     background: #E8E6D1;
 }
 td .date-input {
