@@ -8,7 +8,6 @@ class HomePage extends Component {
     render() {
         console.log(this.state);
         let getString = 'find';
-        let updateString = 'update';
         const loadGoodsRequests = () => {
             let subdivision = document.querySelector('#findSubdivision').value + '&';
             subdivision = subdivision.replace(/ /g, '%20');
@@ -30,15 +29,17 @@ class HomePage extends Component {
                 });
             getString = 'find';
         };
-        const changeValue = (id, field, value) => {
-            let newValue = "false";
-            if (value === "false") newValue = "true";
-            axios.post(updateString, {
-                id: id,
-                field: field,
-                value: newValue
-            });
-            console.log("id " + id + " field " + field + " value " + newValue);
+        const changeValueHandlerFactory = (goodsRequest, field) => {
+            return (
+            <td>
+                <input type={"checkbox"} className={"checkBox"} id={field+goodsRequest.id} defaultChecked={goodsRequest.supply} onClick={() => {
+                    if (field === "supply") goodsRequest.supply = !goodsRequest.supply;
+                    else if (field === "sent") goodsRequest.sent = !goodsRequest.sent;
+                    else goodsRequest.progressMark = !goodsRequest.progressMark;
+                    axios.post("update", goodsRequest);
+                    console.log(goodsRequest);
+                }}/>
+            </td>)
         };
         const list = (this.state === null) ? <ul><li>empty</li></ul> :
             <table className={"requestsTable"}>
@@ -75,15 +76,9 @@ class HomePage extends Component {
                             <td>{goodsRequest.note}</td>
                             <td>{goodsRequest.responsibleUnit}</td>
                             <td>{goodsRequest.dateOfGeneralRequest}</td>
-                            <td>
-                                <input type={"checkbox"} className={"checkBox"} id={"supply"+goodsRequest.id} defaultChecked={goodsRequest.supply} onChange={() => changeValue(goodsRequest.id, "supply", goodsRequest.supply)}/>
-                            </td>
-                            <td>
-                                <input type={"checkbox"} className={"checkBox"} id={"sent"+goodsRequest.id} defaultChecked={goodsRequest.sent} onChange={() => changeValue(goodsRequest.id, "sent", goodsRequest.sent)}/>
-                            </td>
-                            <td>
-                                <input type={"checkbox"} className={"checkBox"} id={"progressMark"+goodsRequest.id} defaultChecked={goodsRequest.progressMark} onChange={() => changeValue(goodsRequest.id, "progressMark", goodsRequest.sent)}/>
-                            </td>
+                            {changeValueHandlerFactory(goodsRequest, "supply")}
+                            {changeValueHandlerFactory(goodsRequest, "sent")}
+                            {changeValueHandlerFactory(goodsRequest, "progressMark")}
                             <td>{goodsRequest.comments}</td>
                         </tr>
                     )}
