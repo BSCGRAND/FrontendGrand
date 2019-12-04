@@ -106,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575445409057</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="исправил чекбоксы">
+      <created>1575449843812</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575449843812</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,7 +136,8 @@
     <MESSAGE value="таблица со всеми запросами" />
     <MESSAGE value="поправил пути запроса в бд" />
     <MESSAGE value="добавил чекбоксы и пост запросы для них" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил чекбоксы и пост запросы для них" />
+    <MESSAGE value="исправил чекбоксы" />
+    <option name="LAST_COMMIT_MESSAGE" value="исправил чекбоксы" />
   </component>
   <component name="WindowStateProjectService">
     <state x="772" y="267" key="FileChooserDialogImpl" timestamp="1574953612529">

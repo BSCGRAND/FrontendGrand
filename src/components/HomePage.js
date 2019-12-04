@@ -30,13 +30,19 @@ class HomePage extends Component {
             getString = 'find';
         };
         const changeValueHandlerFactory = (goodsRequest, field) => {
+            let f = false;
+            if (field === "supply") f = goodsRequest.supply;
+            else if (field === "sent") f = goodsRequest.sent;
+            else f = goodsRequest.progressMark;
             return (
             <td>
-                <input type={"checkbox"} className={"checkBox"} id={field+goodsRequest.id} defaultChecked={goodsRequest.supply} onClick={() => {
+                <input type={"checkbox"} className={"checkBox"} id={field+goodsRequest.id} defaultChecked={f} onClick={() => {
                     if (field === "supply") goodsRequest.supply = !goodsRequest.supply;
                     else if (field === "sent") goodsRequest.sent = !goodsRequest.sent;
                     else goodsRequest.progressMark = !goodsRequest.progressMark;
-                    axios.post("update", goodsRequest);
+                    axios.post("update", goodsRequest).then(res => {
+                        console.log(res);
+                    });
                     console.log(goodsRequest);
                 }}/>
             </td>)
