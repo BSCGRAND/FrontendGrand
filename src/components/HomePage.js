@@ -42,6 +42,10 @@ class HomePage extends Component {
                     else goodsRequest.progressMark = !goodsRequest.progressMark;
                     axios.post("update", goodsRequest).then(res => {
                         console.log(res);
+                        console.log(res.status);
+                        if (res.status === 400) {
+                            alert("Произошла обибка! Изменение не было сохранено");
+                        }
                     });
                     console.log(goodsRequest);
                 }}/>
