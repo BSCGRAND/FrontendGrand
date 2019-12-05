@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e666206-d55b-4b30-9f51-4caf366aa7f5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/components/HomePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575454337603</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="добавлена реакция на ответ(post)">
+      <created>1575511366642</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575511366642</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,7 +153,8 @@
     <MESSAGE value="добавил чекбоксы и пост запросы для них" />
     <MESSAGE value="исправил чекбоксы" />
     <MESSAGE value="фикс фабрики чекбоксов" />
-    <option name="LAST_COMMIT_MESSAGE" value="фикс фабрики чекбоксов" />
+    <MESSAGE value="добавлена реакция на ответ(post)" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавлена реакция на ответ(post)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="772" y="267" key="FileChooserDialogImpl" timestamp="1574953612529">

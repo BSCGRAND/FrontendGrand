@@ -51,6 +51,67 @@ class HomePage extends Component {
                 }}/>
             </td>)
         };
+        const editButtonHandlerFactory = (goodsRequest) => {
+            const saveHandler = (goodsRequest) => {
+                goodsRequest.responsibleUnit = document.querySelector("#smallText"+goodsRequest.id).value;
+                goodsRequest.dateOfGeneralRequest = document.querySelector("#dateInput"+goodsRequest.id).value;
+                goodsRequest.comments = document.querySelector("#bigText"+goodsRequest.id).value;
+                axios.post("update", goodsRequest).then(res => {
+                    console.log(res);
+                    console.log(res.status);
+                    if (res.status === 400) {
+                        alert("Произошла обибка! Изменение не было сохранено");
+                    }
+                });
+                console.log(goodsRequest);
+                this.setState(goodsRequest);
+            };
+            return (
+                <div>
+                    <button type="button" className={"btn btn-light"} data-toggle="modal" data-target={"#modal"+goodsRequest.id}>
+                        X
+                    </button>
+                    <div className={"modal fade"} id={"modal"+goodsRequest.id} tabIndex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className={"modal-dialog"} role="document">
+                            <div className={"modal-content"}>
+                                <div className={"modal-header"}>
+                                    <h5 className={"modal-title"} id={"exampleModalLabel"}>Редактирование заявки</h5>
+                                    <button type="button" className={"close"} data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div className="modal-body">
+                                    <div>
+                                        Ответсвенное подразделение:
+                                    </div>
+                                    <div>
+                                        <input className={'form-control modal_smallText'} id={"smallText"+goodsRequest.id} defaultValue={goodsRequest.responsibleUnit}/>
+                                    </div>
+                                    <div>
+                                        Дата формирования общей заявки на закупки:
+                                    </div>
+                                    <div>
+                                        <input type={'date'} className={'form-control date-input'} id={"dateInput"+goodsRequest.id} defaultValue={goodsRequest.dateOfGeneralRequest}/>
+                                    </div>
+                                    <div>
+                                        Комментарии:
+                                    </div>
+                                    <div>
+                                        <input className={'form-control modal_bigText'} id={"bigText"+goodsRequest.id} defaultValue={goodsRequest.comments}/>
+                                    </div>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close
+                                    </button>
+                                    <button type="button" className="btn btn-primary" onClick={() => saveHandler(goodsRequest)} data-dismiss="modal">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        };
         const list = (this.state === null) ? <ul><li>empty</li></ul> :
             <table className={"requestsTable"}>
                 <tbody>
@@ -64,6 +125,7 @@ class HomePage extends Component {
                         <td>Ед.измерения</td>
                         <td>Дата получения на объекте</td>
                         <td>Примечание</td>
+                        <td>Edit</td>
                         <td>Ответсвенное подразделение</td>
                         <td>Дата формирования общей заявки на закупки</td>
                         <td>Поставка</td>
@@ -84,6 +146,9 @@ class HomePage extends Component {
                             <td>{goodsRequest.unit}</td>
                             <td>{goodsRequest.dateOfReceiving}</td>
                             <td>{goodsRequest.note}</td>
+                            <td>
+                                {editButtonHandlerFactory(goodsRequest)}
+                            </td>
                             <td>{goodsRequest.responsibleUnit}</td>
                             <td>{goodsRequest.dateOfGeneralRequest}</td>
                             {changeValueHandlerFactory(goodsRequest, "supply")}
